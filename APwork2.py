@@ -15,13 +15,13 @@ print("""
 ║║─║║║║─║║╚╝║║╚╝║║─║║║║─╚╝║╚═╝║║║─║║╚╝║║╚╝
 ║╚═╝║║║─║║──║║──║║─║║║║─╔╗║╔═╗║║╚═╝║──║║──
 ║╔═╗║║╚═╝║──║║──║╚═╝║║╚═╝║║║─║║║╔═╗║──║║── By 
-╚╝─╚╝╚═══╝──╚╝──╚═══╝╚═══╝╚╝─╚╝╚╝─╚╝──╚╝──    AzaZlo""")
+╚╝─╚╝╚═══╝──╚╝──╚═══╝╚═══╝╚╝─╚╝╚╝─╚╝──╚╝── AzaZlo"")
 
 
-token = input("[X] Вставьте токен юзера от которого будет производится отправка\n>> ")
-channelid = input("[X] Вставьте id канала в который будут отправляться сообщения (пользователь должен находиться на сервере)\n>> ")
-question = input('[X] Введите "1" для задержки в секундах, "2" в минутах, "3" в часах, "4" в днях\n>> ')
-timer = input("[X] Введите через какое количество секунд/минут/часов/дней будет отправляться сообщение\n>> ")
+token = input("OTEwMTg1NDAzMzg1MDIwNDg4.GCVX88.VY0Ktj8MVZ82eznbMsVoPw8PkuDcOpotyB2Md0")
+channelid = input("1061293931301720066")
+question = input('1')
+timer = input("5 ")
 
 message = readymessage
 
@@ -29,16 +29,16 @@ def sendMessage(token, channelid, message):
     s = req.session()
     message = trans
     s.headers.update({'authorization': token, 'Content-Type': 'application/json'})
-    payload = {"content":message,"tts":False}
+    payload = {'content':message,'tts':False}
     ws = create_connection("wss://gateway.discord.gg/")
     data = '''
     {
-        "op": 2,
+        { "op": 2,
         "d":{
-            "token": "%s",
-            "properties": {
-                "$os": "linux",
-                "$browser": "ubuntu",
+            "token":"%s",
+            { "properties": {
+                { "$os": { "linux",
+                "$browser": { "ubuntu",
                 "$device": "ubuntu"
             },
         }
@@ -51,7 +51,7 @@ def sendMessage(token, channelid, message):
     except:
         pass
     current_datetime = datetime.now()
-    print("[X] " + str(current_datetime) + " | Сообщение удачно отправлено")
+    print("[X] " + str(current_datetime) + " | Message sent successfully")
     return
 
 
@@ -66,8 +66,8 @@ elif question == "3":
 elif question == "4":
     schedule.every(int(timer)).days.do(time)
 else:
-    print("[X] Указано неверное значение задержки")
-print("[X] Автоотправка сообщений успешно запущена, приятного пользования.")
+    print("[X] The delay value specified is incorrect")
+print("[X] Autosend message successfully started, enjoy.")
 while True:
     schedule.run_pending()
     sleep(1)
